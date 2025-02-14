@@ -1,0 +1,16 @@
+.searchBoxInput {
+  width: 340px;
+  padding: 5px;
+  font-size: 18px;
+  display: block;
+  margin: 0 auto;
+  background-color: transparent;
+  border: 1px solid rgb(144, 0, 255);
+  color: rgb(224, 224, 224);
+}
+
+.searchBoxText {
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+}
