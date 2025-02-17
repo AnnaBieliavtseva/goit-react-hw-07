@@ -4,8 +4,7 @@ import { FaPhone } from 'react-icons/fa6';
 import { deleteContact } from '../../redux/contactsOps';
 import { useDispatch } from 'react-redux';
 
-
-export default function Contact({id,  name, number }) {
+export default function Contact({ id, name, number }) {
   const dispatch = useDispatch();
 
   return (

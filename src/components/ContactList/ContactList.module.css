@@ -1,17 +1,16 @@
 .contactList {
-    margin-top: 12px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 }
 
 /* Styles for Tablet devices */
 @media screen and (min-width: 768px) {
   .contactList {
-   flex-direction: row;
+    flex-direction: row;
   }
 }
