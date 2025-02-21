@@ -1,29 +1,76 @@
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
+import { lazy } from 'react';
 import './App.css';
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
-import SearchBox from './SearchBox/SearchBox';
-import { useEffect } from 'react';
-import { fetchContacts } from '../redux/contactsOps';
-import Loader from './Loader/Loader';
-import { selectError, selectIsLoading } from '../redux/contactsSlice';
+import { Layout } from './Layout';
+import { Route, Routes } from 'react-router-dom';
+import { RestrictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute';
+// import ContactForm from './ContactForm/ContactForm';
+// import ContactList from './ContactList/ContactList';
+// import SearchBox from './SearchBox/SearchBox';
+// import { useEffect } from 'react';
+// import { fetchContacts } from '../redux/contactsOps';
+// import Loader from './Loader/Loader';
+// import { selectError, selectIsLoading } from '../redux/contactsSlice';
+
+const HomePage = lazy(() => {
+  console.log('home');
+
+  return import('../pages/HomePage/HomePage');
+});
+const RegisterPage = lazy(() => {
+  console.log('loading');
+
+  return import('../pages/RegisterPage/RegisterPage');
+});
+const LoginPage = lazy(() => {
+  console.log('aaaa');
+
+  return import('../pages/LoginPage/LoginPage');
+});
+const TasksPage = lazy(() => {
+  console.log('tas');
+
+  return import('../pages/TasksPage/TasksPage');
+});
 
 function App() {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  // const dispatch = useDispatch();
+  // const isLoading = useSelector(selectIsLoading);
+  // const error = useSelector(selectError);
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchContacts());
+  // }, [dispatch]);
 
   return (
     <div className="container">
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      {isLoading && !error && <Loader />}
-      <ContactList />
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/tasks"
+                component={<RegisterPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/tasks" component={<LoginPage />} />
+            }
+          />
+          <Route
+            path="/tasks"
+            element={
+              <PrivateRoute redirectTo="/login" component={<TasksPage />} />
+            }
+          />
+        </Routes>
+      </Layout>
     </div>
   );
 }
