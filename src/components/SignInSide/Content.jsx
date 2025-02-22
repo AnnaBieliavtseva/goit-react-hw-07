@@ -1,36 +1,27 @@
-import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
-import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
-import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
-import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
-import { SitemarkIcon } from './CustomIcons';
+import ContactsRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
+import SyncRoundedIcon from '@mui/icons-material/ConstructionRounded';
+import SecurityRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
 
 const items = [
   {
-    icon: <SettingsSuggestRoundedIcon sx={{ color: 'text.secondary' }} />,
-    title: 'Adaptable performance',
+    icon: <ContactsRoundedIcon sx={{ color: 'primary.dark' }} />,
+    title: 'Effortless Contact Management',
     description:
-      'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
+      'Store, organize, and access all your contacts in one place with ease and efficiency.',
   },
   {
-    icon: <ConstructionRoundedIcon sx={{ color: 'text.secondary' }} />,
-    title: 'Built to last',
+    icon: <SecurityRoundedIcon sx={{ color: 'primary.dark' }} />,
+    title: 'Secure & Private',
     description:
-      'Experience unmatched durability that goes above and beyond with lasting investment.',
+      'Your data is encrypted and protected, ensuring your personal and professional contacts remain confidential.',
   },
   {
-    icon: <ThumbUpAltRoundedIcon sx={{ color: 'text.secondary' }} />,
-    title: 'Great user experience',
+    icon: <SyncRoundedIcon sx={{ color: 'primary.dark' }} />,
+    title: 'Seamless Syncing',
     description:
-      'Integrate our product into your routine with an intuitive and easy-to-use interface.',
-  },
-  {
-    icon: <AutoFixHighRoundedIcon sx={{ color: 'text.secondary' }} />,
-    title: 'Innovative functionality',
-    description:
-      'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
+      'Sync your contacts across all your devices and never lose touch with important connections.',
   },
 ];
 
@@ -44,9 +35,9 @@ export default function Content() {
         maxWidth: 450,
       }}
     >
-      <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-        <SitemarkIcon />
-      </Box>
+      <Typography variant="h1" textAlign="center" color="info.dark">
+        Contact keeper
+      </Typography>
       {items.map((item, index) => (
         <Stack key={index} direction="row" sx={{ gap: 2 }}>
           {item.icon}
