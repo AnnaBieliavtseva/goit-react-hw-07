@@ -1,10 +1,4 @@
-import DocumentTitle from "../../components/DocumentTitle"
-
-export const HomePage = () => {
-    return (
-      <div>
-        <DocumentTitle>Home</DocumentTitle>
-        <div>HomePage</div>
-      </div>
-    );
+// import DocumentTitle from "../../components/DocumentTitle"
+export default function HomePage() {
+  return <div>HomePage</div>;
 }

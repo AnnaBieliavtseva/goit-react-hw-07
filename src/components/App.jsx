@@ -1,10 +1,12 @@
 // import { useDispatch, useSelector } from 'react-redux';
 import { lazy } from 'react';
 import './App.css';
-import { Layout } from './Layout';
 import { Route, Routes } from 'react-router-dom';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
+import { Layout } from './Layout';
+import SignInSide from './SignInSide/SignInSide';
+
 // import ContactForm from './ContactForm/ContactForm';
 // import ContactList from './ContactList/ContactList';
 // import SearchBox from './SearchBox/SearchBox';
@@ -13,11 +15,8 @@ import { PrivateRoute } from './PrivateRoute';
 // import Loader from './Loader/Loader';
 // import { selectError, selectIsLoading } from '../redux/contactsSlice';
 
-const HomePage = lazy(() => {
-  console.log('home');
 
-  return import('../pages/HomePage/HomePage');
-});
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => {
   console.log('loading');
 
@@ -44,34 +43,36 @@ function App() {
   // }, [dispatch]);
 
   return (
-    <div className="container">
-      <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute
-                redirectTo="/tasks"
-                component={<RegisterPage />}
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute redirectTo="/tasks" component={<LoginPage />} />
-            }
-          />
-          <Route
-            path="/tasks"
-            element={
-              <PrivateRoute redirectTo="/login" component={<TasksPage />} />
-            }
-          />
-        </Routes>
-      </Layout>
-    </div>
+    <SignInSide/>
+
+    // <div className="container">
+    //   <Layout>
+    //     <Routes>
+    //       <Route path="/" element={<HomePage />} />
+    //       <Route
+    //         path="/register"
+    //         element={
+    //           <RestrictedRoute
+    //             redirectTo="/tasks"
+    //             component={<RegisterPage />}
+    //           />
+    //         }
+    //       />
+    //       <Route
+    //         path="/login"
+    //         element={
+    //           <RestrictedRoute redirectTo="/tasks" component={<LoginPage />} />
+    //         }
+    //       />
+    //       <Route
+    //         path="/tasks"
+    //         element={
+    //           <PrivateRoute redirectTo="/login" component={<TasksPage />} />
+    //         }
+    //       />
+    //     </Routes>
+    //   </Layout>
+    // </div>
   );
 }
 

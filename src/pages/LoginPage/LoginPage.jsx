@@ -1,6 +1,6 @@
 import DocumentTitle from "../../components/DocumentTitle";
 
-export const LoginPage = () => {
+export default function LoginPage()  {
     return (
         <>
             <DocumentTitle>LoginPage</DocumentTitle>
