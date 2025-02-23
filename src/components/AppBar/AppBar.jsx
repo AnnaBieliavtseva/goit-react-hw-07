@@ -14,7 +14,7 @@ export const AppBar = () => {
         <header className={css.header}>
             <Navigation />
             {isLoggedIn ? <UserMenu /> : <AuthNav />}
-            <ColorModeSelect sx={{ display: 'block',  }} />
+            {!isLoggedIn && <ColorModeSelect sx={{ display: 'block', }} />}
         </header>
     )
 }

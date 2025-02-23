@@ -1,0 +1,25 @@
+.container {
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.text {
+  color: hsl(210, 100%, 35%);
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Styles for Tablet devices */
+@media screen and (min-width: 768px) {
+  .text {
+   font-size: 18px;
+   flex-wrap: nowrap;
+   justify-content: center;
+  }
+}
