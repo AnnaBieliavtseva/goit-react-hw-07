@@ -18,15 +18,17 @@ const Card = styled(MuiCard)(({ theme }) => ({
   width: '100%',
   padding: theme.spacing(4),
   gap: theme.spacing(2),
-  boxShadow:
-    'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
+  transition: 'all 0.3s ease',
   [theme.breakpoints.up('sm')]: {
     width: '450px',
   },
-  ...theme.applyStyles('dark', {
-    boxShadow:
-      'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
-  }),
+  backgroundColor: theme.palette.background.paper, 
+  color: theme.palette.text.primary, 
+  border: `1px solid ${theme.palette.divider}`, 
+  boxShadow:
+    theme.palette.mode === 'dark'
+      ? 'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px'
+      : 'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
 }));
 
 export default function SignInCard() {
@@ -53,12 +55,7 @@ export default function SignInCard() {
         console.log('login error');
       });
 
-
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-    event.currentTarget.reset()
+    event.currentTarget.reset();
   };
 
   const validateInputs = () => {
@@ -93,11 +90,13 @@ export default function SignInCard() {
       <Typography
         component="h1"
         variant="h4"
-        sx={{
+        sx={theme => ({
           width: '100%',
           fontSize: 'clamp(2rem, 10vw, 2.15rem)',
-          color: 'info.dark',
-        }}
+          color:
+            theme.palette.mode === 'dark' ? 'primary.light' : 'primary.dark', // Меняем цвет заголовка
+          transition: 'color 0.3s ease',
+        })}
       >
         Sign in
       </Typography>
@@ -148,7 +147,18 @@ export default function SignInCard() {
           fullWidth
           variant="outlined"
           onClick={validateInputs}
-          sx={{ backgroundColor: 'primary.dark' }}
+          sx={theme => ({
+            backgroundColor:
+              theme.palette.mode === 'dark' ? 'primary.main' : 'info.dark',
+            color: theme.palette.text.primary,
+            '&:hover': {
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? 'primary.dark'
+                  : 'primary.light',
+            },
+            transition: 'all 0.3s ease',
+          })}
         >
           Sign in
         </Button>
@@ -162,3 +172,4 @@ export default function SignInCard() {
     </Card>
   );
 }
+

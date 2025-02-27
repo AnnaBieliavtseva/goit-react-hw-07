@@ -10,19 +10,21 @@ export const UserMenu = () => {
     const dispatch = useDispatch();
 
 
-    return (
+  return (
+    <div>
       <div className={css.container}>
-        <p className={css.text}>Welcome, {user.name}</p>
         <Button
           type="button"
           fullWidth
           variant="outlined"
-                sx={{ backgroundColor: 'primary.dark' }}
-                onClick={()=> dispatch(logOut())}
+          sx={{ backgroundColor: 'primary.dark' }}
+          onClick={() => dispatch(logOut())}
         >
           Logout
         </Button>
-       
       </div>
-    );
+
+      <p className={css.text}>Welcome, {user.name}</p>
+    </div>
+  );
 }

@@ -1,7 +1,11 @@
-import SignUp from "../../components/SignUp/SignUp";
+import DocumentTitle from '../../components/DocumentTitle';
+import SignUp from '../../components/SignUp/SignUp';
 
 export default function RegisterPage() {
-    console.log('log');
-    
-  return <div><SignUp/></div>;
-};
+  return (
+    <div>
+      <DocumentTitle>RegistrationPage</DocumentTitle>;
+      <SignUp />
+    </div>
+  );
+}
