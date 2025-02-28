@@ -6,7 +6,9 @@
   /* align-items: center; */
   gap: 15px;
 }
-
+.btn {
+  max-width: 100px;
+}
 .text {
   color: hsl(210, 100%, 35%);
   font-weight: 500;

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import FormLabel from '@mui/material/FormLabel';
@@ -14,9 +13,9 @@ import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
 import ContactBtn from '../Button/ContactBtn';
 import ContactCard from '../Card/ContactCard';
-
-
-
+import '../../components/index.css';
+import ContactFormBox from '../Box/ContactFormBox';
+import { Box } from '@mui/material';
 
 const SignUpContainer = styled(Stack)(({ theme }) => ({
   height: 'calc((1 - var(--template-frame-height, 0)) * 100dvh)',
@@ -77,24 +76,28 @@ export default function SignUp(props) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (nameError || emailError || passwordError) {
-      return;
-    }
-    const data = new FormData(event.currentTarget);
-    dispatch(
-      register({
-        name: data.get('name'),
-        email: data.get('email'),
-        password: data.get('password'),
-      })
-    );
-    console.log({
-      name: data.get('name'),
-      lastName: data.get('lastName'),
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-      event.currentTarget.reset()
+    if (!validateInputs()) return;
+
+    const formData = {
+      name: event.currentTarget.name.value,
+      email: event.currentTarget.email.value,
+      password: event.currentTarget.password.value,
+    };
+
+    dispatch(register(formData))
+      .unwrap()
+      .then(() => console.log('Registration successful'))
+      .catch(err => {
+        if (err.code === 11000) {
+          setEmailError(true);
+          setEmailErrorMessage('This email is already in use.');
+        } else {
+          console.error('Registration failed:', err);
+        }
+      });
+
+  
+    event.currentTarget.reset();
   };
 
   return (
@@ -112,17 +115,13 @@ export default function SignUp(props) {
               color:
                 theme.palette.mode === 'dark'
                   ? 'primary.light'
-                  : 'primary.dark', 
+                  : 'primary.dark',
               transition: 'color 0.3s ease',
             })}
           >
             Sign up
           </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
-          >
+          <ContactFormBox onHandleSubmit={handleSubmit}>
             <FormControl>
               <FormLabel htmlFor="name">Full name</FormLabel>
               <TextField
@@ -173,13 +172,16 @@ export default function SignUp(props) {
             <ContactBtn type="submit" handleClick={validateInputs}>
               Sign up
             </ContactBtn>
-          </Box>
+          </ContactFormBox>
           <Divider>
             <Typography sx={{ color: 'text.secondary' }}>or</Typography>
           </Divider>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Typography sx={{ textAlign: 'center' }}>
-              Already have an account? <NavLink to="/login">Sign In</NavLink>
+              Already have an account?{' '}
+              <NavLink to="/login" className="contactLink">
+                Sign In
+              </NavLink>
             </Typography>
           </Box>
         </ContactCard>

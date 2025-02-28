@@ -1,7 +1,15 @@
 .container {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
+
+.thumb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
 /* Styles for Desktop devices */
 @media screen and (min-width: 1440px) {
@@ -10,4 +18,11 @@
     justify-content: flex-start;
     align-items: baseline;
   }
+
+  /* .thumb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  } */
 }

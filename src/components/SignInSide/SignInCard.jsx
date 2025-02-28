@@ -10,6 +10,7 @@ import { logIn } from '../../redux/auth/operations';
 import ContactBtn from '../Button/ContactBtn';
 import ContactCard from '../Card/ContactCard';
 import ContactFormBox from '../Box/ContactFormBox';
+import '../../components/index.css';
 
 
 export default function SignInCard() {
@@ -38,7 +39,34 @@ export default function SignInCard() {
 
     event.currentTarget.reset();
   };
+// const handleSubmit = async event => {
+//   event.preventDefault();
+//   if (!validateInputs()) return;
 
+//   const data = new FormData(event.currentTarget);
+//   const credentials = {
+//     email: data.get('email'),
+//     password: data.get('password'),
+//   };
+
+//   try {
+//     await dispatch(logIn(credentials)).unwrap();
+//     console.log('Login successful');
+//   } catch (err) {
+//     console.error('Login failed:', err);
+
+//     // Проверяем HTTP-код ошибки
+//     if (err?.status === 400) {
+//       setEmailError(true);
+//       setPasswordError(true);
+//       setEmailErrorMessage('Invalid email or password.');
+//       setPasswordErrorMessage('Invalid email or password.');
+//     } else {
+//       setEmailError(true);
+//       setEmailErrorMessage('Something went wrong. Try again later.');
+//     }
+//   }
+// };
   const validateInputs = () => {
     const email = document.getElementById('email');
     const password = document.getElementById('password');
@@ -67,7 +95,7 @@ export default function SignInCard() {
   };
 
   return (
-    <ContactCard variant='outlined'>
+    <ContactCard variant="outlined">
       <Typography
         component="h1"
         variant="h4"
@@ -75,13 +103,13 @@ export default function SignInCard() {
           width: '100%',
           fontSize: 'clamp(2rem, 10vw, 2.15rem)',
           color:
-            theme.palette.mode === 'dark' ? 'primary.light' : 'primary.dark', 
+            theme.palette.mode === 'dark' ? 'primary.light' : 'primary.dark',
           transition: 'color 0.3s ease',
         })}
       >
         Sign in
       </Typography>
-     <ContactFormBox onHandleSubmit={handleSubmit}>
+      <ContactFormBox onHandleSubmit={handleSubmit}>
         <FormControl>
           <FormLabel htmlFor="email">Email</FormLabel>
           <TextField
@@ -124,7 +152,9 @@ export default function SignInCard() {
         <Typography sx={{ textAlign: 'center' }}>
           Don&apos;t have an account?{' '}
           <span>
-            <NavLink to="/register">Sign up</NavLink>
+            <NavLink to="/register" className="contactLink">
+              Sign up
+            </NavLink>
           </span>
         </Typography>
       </ContactFormBox>

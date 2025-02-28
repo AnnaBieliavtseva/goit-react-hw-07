@@ -6,7 +6,8 @@ import Loader from '../../components/Loader/Loader';
 import { useEffect } from 'react';
 import { fetchContacts } from '../../redux/contacts/operations';
 import DocumentTitle from '../../components/DocumentTitle';
-import css from './ContactsPage.module.css'
+import css from './ContactsPage.module.css';
+import SearchBox from '../../components/SearchBox/SearchBox';
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
@@ -19,7 +20,10 @@ export default function ContactsPage() {
   return (
     <div className={css.container}>
       <DocumentTitle>ContactsPage</DocumentTitle>
-      <ContactForm />
+      <div className={css.thumb}>
+        <ContactForm />
+        <SearchBox />
+      </div>
       {isLoading && <Loader />}
       <ContactList />
     </div>

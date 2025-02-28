@@ -20,10 +20,10 @@ export default function Contact({ id, name, number }) {
         gap: { xs: 6, sm: 4, lg: 16 },
         p: { xs: 1, sm: 2 },
         m: 'auto',
-        width: { xs: '280px' },
+       
       }}
     >
-      <ContactCard variant='outlined'>
+      <ContactCard variant="outlined" sx={{ width: { xs: '280px', md: '300px' } }}>
         <div>
           <h3 className={css.contactTitle}>
             <span>

@@ -11,7 +11,7 @@ export const UserMenu = () => {
   return (
     <div>
       <div className={css.container}>
-        <ContactBtn type="button" handleClick={() => dispatch(logOut())}>
+        <ContactBtn type="button" handleClick={() => dispatch(logOut())} className={css.btn}>
           Logout
         </ContactBtn>
       </div>

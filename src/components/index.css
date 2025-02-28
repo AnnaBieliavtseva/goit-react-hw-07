@@ -42,3 +42,22 @@ img {
   max-width: 100%;
 }
 
+.contactLink {
+  text-decoration: none;
+  color: hsl(210, 100%, 35%);
+  font-weight: 500;
+  font-size: 14px;
+   transition: all 0.3s ease;
+}
+
+.contactLink:hover, 
+.contactLink:focus {
+  color:hsl(210, 100%, 65%);
+}
+
+/* Styles for Tablet devices */
+@media screen and (min-width: 768px) {
+  .contactLink {
+   font-size: 18px;
+  }
+}
