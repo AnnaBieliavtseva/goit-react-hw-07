@@ -8,7 +8,7 @@ export default function Loader() {
         height={100}
         width={100}
         radius={5}
-        color="rgb(145, 64, 222)"
+        color="hsl(210, 100%, 35%)"
         ariaLabel="ball-triangle-loading"
         wrapperStyle={{}}
         wrapperClass=""

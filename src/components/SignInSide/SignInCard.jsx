@@ -1,35 +1,16 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import MuiCard from '@mui/material/Card';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
+import ContactBtn from '../Button/ContactBtn';
+import ContactCard from '../Card/ContactCard';
+import ContactFormBox from '../Box/ContactFormBox';
 
-const Card = styled(MuiCard)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignSelf: 'center',
-  width: '100%',
-  padding: theme.spacing(4),
-  gap: theme.spacing(2),
-  transition: 'all 0.3s ease',
-  [theme.breakpoints.up('sm')]: {
-    width: '450px',
-  },
-  backgroundColor: theme.palette.background.paper, 
-  color: theme.palette.text.primary, 
-  border: `1px solid ${theme.palette.divider}`, 
-  boxShadow:
-    theme.palette.mode === 'dark'
-      ? 'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px'
-      : 'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
-}));
 
 export default function SignInCard() {
   const [emailError, setEmailError] = React.useState(false);
@@ -86,7 +67,7 @@ export default function SignInCard() {
   };
 
   return (
-    <Card variant="outlined">
+    <ContactCard variant='outlined'>
       <Typography
         component="h1"
         variant="h4"
@@ -94,18 +75,13 @@ export default function SignInCard() {
           width: '100%',
           fontSize: 'clamp(2rem, 10vw, 2.15rem)',
           color:
-            theme.palette.mode === 'dark' ? 'primary.light' : 'primary.dark', // Меняем цвет заголовка
+            theme.palette.mode === 'dark' ? 'primary.light' : 'primary.dark', 
           transition: 'color 0.3s ease',
         })}
       >
         Sign in
       </Typography>
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        noValidate
-        sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}
-      >
+     <ContactFormBox onHandleSubmit={handleSubmit}>
         <FormControl>
           <FormLabel htmlFor="email">Email</FormLabel>
           <TextField
@@ -142,34 +118,17 @@ export default function SignInCard() {
           />
         </FormControl>
 
-        <Button
-          type="submit"
-          fullWidth
-          variant="outlined"
-          onClick={validateInputs}
-          sx={theme => ({
-            backgroundColor:
-              theme.palette.mode === 'dark' ? 'primary.main' : 'info.dark',
-            color: theme.palette.text.primary,
-            '&:hover': {
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? 'primary.dark'
-                  : 'primary.light',
-            },
-            transition: 'all 0.3s ease',
-          })}
-        >
+        <ContactBtn type="submit" handleClick={validateInputs}>
           Sign in
-        </Button>
+        </ContactBtn>
         <Typography sx={{ textAlign: 'center' }}>
           Don&apos;t have an account?{' '}
           <span>
             <NavLink to="/register">Sign up</NavLink>
           </span>
         </Typography>
-      </Box>
-    </Card>
+      </ContactFormBox>
+    </ContactCard>
   );
 }
 

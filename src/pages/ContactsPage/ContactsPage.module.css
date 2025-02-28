@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styles for Desktop devices */
+@media screen and (min-width: 1440px) {
+  .container {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+  }
+}

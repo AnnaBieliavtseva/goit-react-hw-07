@@ -4,7 +4,7 @@ import SignUp from '../../components/SignUp/SignUp';
 export default function RegisterPage() {
   return (
     <div>
-      <DocumentTitle>RegistrationPage</DocumentTitle>;
+      <DocumentTitle>RegistrationPage</DocumentTitle>
       <SignUp />
     </div>
   );

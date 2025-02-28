@@ -1,30 +1,21 @@
-import { useDispatch, useSelector } from "react-redux"
-import { selectUser } from "../../redux/auth/selectors"
-import { Button } from "@mui/material";
-import css from './UserMenu.module.css'
-import { logOut } from "../../redux/auth/operations";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../redux/auth/selectors';
+import css from './UserMenu.module.css';
+import { logOut } from '../../redux/auth/operations';
+import ContactBtn from '../Button/ContactBtn';
 
 export const UserMenu = () => {
-    const user = useSelector(selectUser) 
-    const dispatch = useDispatch();
-
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   return (
     <div>
       <div className={css.container}>
-        <Button
-          type="button"
-          fullWidth
-          variant="outlined"
-          sx={{ backgroundColor: 'primary.dark' }}
-          onClick={() => dispatch(logOut())}
-        >
+        <ContactBtn type="button" handleClick={() => dispatch(logOut())}>
           Logout
-        </Button>
+        </ContactBtn>
       </div>
-
       <p className={css.text}>Welcome, {user.name}</p>
     </div>
   );
-}
+};

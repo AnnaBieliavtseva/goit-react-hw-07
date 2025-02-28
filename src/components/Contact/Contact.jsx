@@ -3,28 +3,10 @@ import { FaUser } from 'react-icons/fa6';
 import { FaPhone } from 'react-icons/fa6';
 import { deleteContact } from '../../redux/contacts/operations';
 import { useDispatch } from 'react-redux';
-import MuiCard from '@mui/material/Card';
-import { Stack, styled } from '@mui/material';
+import { Stack } from '@mui/material';
+import ContactBtn from '../Button/ContactBtn';
+import ContactCard from '../Card/ContactCard';
 
-const Card = styled(MuiCard)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignSelf: 'center',
-  width: '100%',
-  padding: theme.spacing(4),
-  gap: theme.spacing(2),
-  transition: 'all 0.3s ease',
-//   [theme.breakpoints.up('sm')]: {
-//     width: '450px',
-//   },
-  backgroundColor: theme.palette.background.paper,
-  color: theme.palette.text.primary,
-  border: `1px solid ${theme.palette.divider}`,
-  boxShadow:
-    theme.palette.mode === 'dark'
-      ? 'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px'
-      : 'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
-}));
 
 export default function Contact({ id, name, number }) {
   const dispatch = useDispatch();
@@ -33,15 +15,15 @@ export default function Contact({ id, name, number }) {
     <Stack
       direction={{ xs: 'column', md: 'row' }}
       sx={{
-          justifyContent: 'center',
-          flexWrap:'wrap',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
         gap: { xs: 6, sm: 4, lg: 16 },
         p: { xs: 1, sm: 2 },
-          m: 'auto',
-        width: { xs: '280px',},
+        m: 'auto',
+        width: { xs: '280px' },
       }}
     >
-      <Card>
+      <ContactCard variant='outlined'>
         <div>
           <h3 className={css.contactTitle}>
             <span>
@@ -56,13 +38,13 @@ export default function Contact({ id, name, number }) {
             {number}
           </p>
         </div>
-        <button
-          className={css.deleteBtn}
-          onClick={() => dispatch(deleteContact(id))}
+        <ContactBtn
+          type="button"
+          handleClick={() => dispatch(deleteContact(id))}
         >
           Delete
-        </button>
-      </Card>
+        </ContactBtn>
+      </ContactCard>
     </Stack>
   );
 }

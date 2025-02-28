@@ -6,6 +6,7 @@ import Loader from '../../components/Loader/Loader';
 import { useEffect } from 'react';
 import { fetchContacts } from '../../redux/contacts/operations';
 import DocumentTitle from '../../components/DocumentTitle';
+import css from './ContactsPage.module.css'
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export default function ContactsPage() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={css.container}>
       <DocumentTitle>ContactsPage</DocumentTitle>
       <ContactForm />
       {isLoading && <Loader />}

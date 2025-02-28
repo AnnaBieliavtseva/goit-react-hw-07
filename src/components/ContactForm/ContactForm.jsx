@@ -1,118 +1,19 @@
-// import { Formik, Form, Field, ErrorMessage } from 'formik';
-// import * as Yup from 'yup';
 import { useState } from 'react';
-// import { nanoid } from 'nanoid';
-// import css from './ContactForm.module.css';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
 import {
   Box,
-  Button,
-   FormControl,
+  FormControl,
   FormLabel,
-  styled,
   TextField,
   Typography,
   Stack,
 } from '@mui/material';
-import MuiCard from '@mui/material/Card';
-
-// const FeedbackSchema = Yup.object().shape({
-//   name: Yup.string()
-//     .min(3, 'Too Short!')
-//     .max(50, 'Too Long!')
-//     .required('Required'),
-//   number: Yup.string()
-//     .min(3, 'Too Short!')
-//     .max(50, 'Too Long!')
-//     .required('Required'),
-// });
-
-// const initialValues = {
-//   id: nanoid(),
-//   name: '',
-//   number: '',
-// };
-
-const Card = styled(MuiCard)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignSelf: 'center',
-  width: '100%',
-  padding: theme.spacing(4),
-  gap: theme.spacing(2),
-  transition: 'all 0.3s ease',
-  [theme.breakpoints.up('sm')]: {
-    width: '450px',
-  },
-  backgroundColor: theme.palette.background.paper,
-  color: theme.palette.text.primary,
-  border: `1px solid ${theme.palette.divider}`,
-  boxShadow:
-    theme.palette.mode === 'dark'
-      ? 'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px'
-      : 'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
-}));
+import ContactBtn from '../Button/ContactBtn';
+import ContactCard from '../Card/ContactCard';
+import ContactFormBox from '../Box/ContactFormBox';
 
 export default function ContactForm() {
-  //   const dispatch = useDispatch();
-
-  //   const nameFieldId = useId();
-  //   const phoneFieldId = useId();
-
-  //   const handleSubmit = (values, actions) => {
-  //     dispatch(
-  //       addContact({
-  //         name: values.name,
-  //         number: values.number,
-  //       })
-  //     );
-  //     actions.resetForm();
-  //   };
-  //   return (
-  //     <Formik
-  //       initialValues={initialValues}
-  //       onSubmit={handleSubmit}
-  //       validationSchema={FeedbackSchema}
-  //     >
-  //       <div className={css.contactFormContainer}>
-  //         <Form className={css.contactForm}>
-  //           <label htmlFor={nameFieldId} className={css.contactFormLabel}>
-  //             Name
-  //           </label>
-  //           <Field
-  //             type="text"
-  //             name="name"
-  //             id={nameFieldId}
-  //             className={css.contactFormInput}
-  //           ></Field>
-  //           <ErrorMessage
-  //             name="name"
-  //             component="span"
-  //             className={css.errorMessage}
-  //           />
-  //           <label htmlFor={phoneFieldId} className={css.contactFormLabel}>
-  //             Number
-  //           </label>
-  //           <Field
-  //             type="text"
-  //             name="number"
-  //             id={phoneFieldId}
-  //             className={css.contactFormInput}
-  //           ></Field>
-  //           <ErrorMessage
-  //             name="number"
-  //             component="span"
-  //             className={css.errorMessage}
-  //           />
-  //           <button type="submit" className={css.contactFormBtn}>
-  //             Add contact
-  //           </button>
-  //         </Form>
-  //       </div>
-  //     </Formik>
-  //   );
-
   const [nameError, setNameError] = useState(false);
   const [nameErrorMessage, setNameErrorMessage] = useState('');
   const [phoneError, setPhoneError] = useState(false);
@@ -172,10 +73,10 @@ export default function ContactForm() {
         justifyContent: 'center',
         gap: { xs: 6, sm: 4, lg: 16 },
         p: { xs: 2, sm: 4 },
-        m: 'auto',
+        m: '0',
       }}
     >
-      <Card variant="outlined">
+      <ContactCard variant="outlined">
         <Typography
           component="h1"
           variant="h4"
@@ -189,17 +90,7 @@ export default function ContactForm() {
         >
           Add contact
         </Typography>
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-          noValidate
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            gap: 2,
-          }}
-        >
+        <ContactFormBox onHandleSubmit={handleSubmit}>
           <FormControl>
             <FormLabel htmlFor="name">Name</FormLabel>
             <TextField
@@ -231,29 +122,11 @@ export default function ContactForm() {
               color={phoneError ? 'error' : 'primary'}
             />
           </FormControl>
-
-          <Button
-            type="submit"
-            fullWidth
-            variant="outlined"
-            onClick={validateInputs}
-            sx={theme => ({
-              backgroundColor:
-                theme.palette.mode === 'dark' ? 'primary.main' : 'info.dark',
-              color: theme.palette.text.primary,
-              '&:hover': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? 'primary.dark'
-                    : 'primary.light',
-              },
-              transition: 'all 0.3s ease',
-            })}
-          >
+          <ContactBtn type="submit" handleClick={validateInputs}>
             Add contact
-          </Button>
-        </Box>
-      </Card>
+          </ContactBtn>
+        </ContactFormBox>
+      </ContactCard>
     </Stack>
   );
 }
