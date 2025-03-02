@@ -11,7 +11,7 @@ import ContactBtn from '../Button/ContactBtn';
 import ContactCard from '../Card/ContactCard';
 import ContactFormBox from '../Box/ContactFormBox';
 import '../../components/index.css';
-
+import toast from 'react-hot-toast';
 
 export default function SignInCard() {
   const [emailError, setEmailError] = React.useState(false);
@@ -31,42 +31,15 @@ export default function SignInCard() {
     )
       .unwrap()
       .then(() => {
-        console.log('login success');
+        toast.success('Successfully logged in');
       })
       .catch(() => {
-        console.log('login error');
+        toast.error('Invalid email or password. Please try again.');
       });
 
     event.currentTarget.reset();
   };
-// const handleSubmit = async event => {
-//   event.preventDefault();
-//   if (!validateInputs()) return;
 
-//   const data = new FormData(event.currentTarget);
-//   const credentials = {
-//     email: data.get('email'),
-//     password: data.get('password'),
-//   };
-
-//   try {
-//     await dispatch(logIn(credentials)).unwrap();
-//     console.log('Login successful');
-//   } catch (err) {
-//     console.error('Login failed:', err);
-
-//     // Проверяем HTTP-код ошибки
-//     if (err?.status === 400) {
-//       setEmailError(true);
-//       setPasswordError(true);
-//       setEmailErrorMessage('Invalid email or password.');
-//       setPasswordErrorMessage('Invalid email or password.');
-//     } else {
-//       setEmailError(true);
-//       setEmailErrorMessage('Something went wrong. Try again later.');
-//     }
-//   }
-// };
   const validateInputs = () => {
     const email = document.getElementById('email');
     const password = document.getElementById('password');
@@ -161,4 +134,3 @@ export default function SignInCard() {
     </ContactCard>
   );
 }
-

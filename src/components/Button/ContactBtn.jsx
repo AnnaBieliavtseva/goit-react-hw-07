@@ -1,8 +1,6 @@
-import { Button } from "@mui/material";
+import { Button } from '@mui/material';
 
-
-
-function ContactBtn({children, type, handleClick}) {
+function ContactBtn({ children, type, handleClick }) {
   return (
     <Button
       type={type}
@@ -19,8 +17,10 @@ function ContactBtn({children, type, handleClick}) {
         },
         transition: 'all 0.3s ease',
       })}
-      >{ children}</Button>
+    >
+      {children}
+    </Button>
   );
 }
 
-export default ContactBtn
+export default ContactBtn;

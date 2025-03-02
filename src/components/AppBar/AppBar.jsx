@@ -17,8 +17,7 @@ export const AppBar = () => {
         justifyContent: 'space-between',
         alignItems: 'flex-start',
       }}
-      >
-          
+    >
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
       {!isLoggedIn && <ColorModeSelect sx={{ display: 'block' }} />}

@@ -16,6 +16,7 @@ import ContactCard from '../Card/ContactCard';
 import '../../components/index.css';
 import ContactFormBox from '../Box/ContactFormBox';
 import { Box } from '@mui/material';
+import toast from 'react-hot-toast';
 
 const SignUpContainer = styled(Stack)(({ theme }) => ({
   height: 'calc((1 - var(--template-frame-height, 0)) * 100dvh)',
@@ -86,17 +87,17 @@ export default function SignUp(props) {
 
     dispatch(register(formData))
       .unwrap()
-      .then(() => console.log('Registration successful'))
+      .then(() => toast.success('Registration successful'))
       .catch(err => {
-        if (err.code === 11000) {
+        if (err?.code === 11000 || err?.response?.data?.code === 11000) {
           setEmailError(true);
           setEmailErrorMessage('This email is already in use.');
+          toast.error('This email is already in use.');
         } else {
-          console.error('Registration failed:', err);
+          toast.error('Please refresh the page and try again');
         }
       });
 
-  
     event.currentTarget.reset();
   };
 

@@ -16,7 +16,7 @@ export const Navigation = () => {
             fontSize: '40px',
             color: 'primary.dark',
             transition: 'all 0.3s ease',
-            marginRight:'15px',
+            marginRight: '15px',
             '&:hover': { color: 'primary.light' },
           }}
         />

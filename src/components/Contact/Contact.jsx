@@ -7,7 +7,6 @@ import { Stack } from '@mui/material';
 import ContactBtn from '../Button/ContactBtn';
 import ContactCard from '../Card/ContactCard';
 
-
 export default function Contact({ id, name, number }) {
   const dispatch = useDispatch();
 
@@ -20,10 +19,12 @@ export default function Contact({ id, name, number }) {
         gap: { xs: 6, sm: 4, lg: 16 },
         p: { xs: 1, sm: 2 },
         m: 'auto',
-       
       }}
     >
-      <ContactCard variant="outlined" sx={{ width: { xs: '280px', md: '300px' } }}>
+      <ContactCard
+        variant="outlined"
+        sx={{ width: { xs: '280px', md: '300px' } }}
+      >
         <div>
           <h3 className={css.contactTitle}>
             <span>
