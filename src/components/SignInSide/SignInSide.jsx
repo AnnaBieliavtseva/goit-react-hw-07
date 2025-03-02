@@ -1,11 +1,10 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
 import AppTheme from '../Shared-theme/AppTheme';
-
-import SignInCard from './SignInCard';
 import Content from './Content';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import LoginForm from '../LoginForm/LoginForm';
 
 export default function SignInSide(props) {
   const isLoggediIn = useSelector(selectIsLoggedIn)
@@ -33,7 +32,7 @@ export default function SignInSide(props) {
             }}
           >
             <Content />
-            {!isLoggediIn && <SignInCard />}
+            {!isLoggediIn && <LoginForm />}
           </Stack>
         </Stack>
    

@@ -13,7 +13,7 @@ import ContactFormBox from '../Box/ContactFormBox';
 import '../../components/index.css';
 import toast from 'react-hot-toast';
 
-export default function SignInCard() {
+export default function LoginForm() {
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
